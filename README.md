@@ -18,3 +18,42 @@
 - HTTPs
 - Tree Shaking (removes unused code)
 - Different dev and prod bundles
+
+
+Food ordering app
+/**
+ * Header
+ *  - Logo
+ *  - Nav Items (Home, About us, Cart)
+ * 
+ * Body
+ *  - Search
+ *  - Restaurant Container
+ *      - Restaurant Card
+ *          - Image
+ *          - Name
+ *          - Cuisine
+ *          - Star Rating, Time to delivery, Price for two
+ *          - Offers
+ * 
+ * Footer
+ *  - Copyright
+ *  - Links
+ *  - Address
+ *  - Contact
+ *  - Feedback
+ */
+
+ Two types of Export/Import:
+ - Default Export/Import
+    export default Component;
+    import Component from "path";
+
+- Named Export/Import
+    export const Component;
+    import {Component} from "path";
+
+# React Hooks
+(Normal JS utility functions)
+- useState() - Super powerful state variables in react
+- useEffect()
