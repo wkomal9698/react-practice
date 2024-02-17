@@ -1,7 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
-import restaurantList from "../utils/mockData";
-import { useState } from "react";
-
+// import restaurantList from "../utils/mockData";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
+ 
 const SearchComponent = () => {
     return (
         <div className="search">
@@ -13,49 +14,54 @@ const SearchComponent = () => {
 
 const Body = () => {
 
-    
-    // Normal JS variable
-    // let listOfRestaurants = [
-    //     {
-    //         "id": 193342343,
-    //         "imgsrc": "https://www.curryflow.com/wp-content/uploads/2019/09/45626733_198715864384480_6178359071381402980_n-1.jpg",
-    //         "resName": "KFC",
-    //         "resCuisine": ["Burgers", "Biryani", "American", "Snacks", "Fast food"],
-    //         "resRating": "3.8",
-    //         "timeToDeliver": "42 MINS",
-    //         "priceForTwo": 40000,
-    //         "offer": "FREE DELIVERY"
-    //     },
-    //     {
-    //         "id": 193312343,
-    //         "imgsrc": "https://www.curryflow.com/wp-content/uploads/2019/09/45626733_198715864384480_6178359071381402980_n-1.jpg",
-    //         "resName": "Dominos",
-    //         "resCuisine": ["Pizza", "Burgers", "American", "Snacks", "Fast food"],
-    //         "resRating": "4.8",
-    //         "timeToDeliver": "30 MINS",
-    //         "priceForTwo": 50000,
-    //         "offer": "FREE DELIVERY"
-    //     }
-    // ];  
+    useEffect(() => {
+        console.log("useeffect called")
+        fetchData();
+    },[])
 
+    const fetchData = async () => {
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.6244806999999&page_type=DESKTOP_WEB_LISTING");
+        const jsonData = await data.json();
+        //Optional Chaining
+        let restaurantList = jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        // restaurantList = restaurantList.concat(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setListOfRestaurants(restaurantList);
+        setFilteredListOfRestaurants(restaurantList);
+
+    };
+
+    // Whenever state variables update, React triggers a reconciliation cycle (re-renders the component)
     // State variable - super powerful variable
-    let [listOfRestaurants, setlistOfRestaurants] = useState(restaurantList);
+    const [listOfRestaurants, setListOfRestaurants] = useState([]);
+    const [filteredListOfRestaurants, setFilteredListOfRestaurants] = useState([]);
+    let [searchText, setSearchText] = useState("");
 
-    return (
+    // Conditional Rendering
+    // if(listOfRestaurants.length === 0) {
+    //     return (<Shimmer/>)
+    // }
+
+    // Conditional Rendering via Ternary operator
+    return listOfRestaurants.length === 0 ? <Shimmer/> : (
         <div className="body">
-            {/* <SearchComponent/> */}
+           <div className="search">
+            <input type="text" value={searchText} onChange={(e)=> setSearchText(e.target.value)}></input>
+            <button onClick={() => {
+                setFilteredListOfRestaurants(listOfRestaurants.filter((restaurant) => restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())))}}>Search</button>
+        </div>
             <div className="filter"> 
+            
             <button className="filter-button" 
             onClick={(e)=>{
-                setlistOfRestaurants(listOfRestaurants.filter((restaurant) => restaurant.resRating >= 4.0));
-                console.log("list filtered:: ", listOfRestaurants);
+                setFilteredListOfRestaurants(listOfRestaurants.filter((restaurant) => restaurant.info.avgRating >= 4.5));
             }}>Top rated Restaurants</button>
+            <button className="filter-button" 
+            onClick={(e)=>{setFilteredListOfRestaurants(listOfRestaurants); setSearchText("");
+            }}>All Restaurants</button>
         </div> 
             <div className="restaurant-container">
-                {console.log("list before:: ", listOfRestaurants)}
-                {listOfRestaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurantDetails={restaurant}/>
+                {filteredListOfRestaurants.map((restaurant) => <RestaurantCard key={restaurant.info.id} restaurantDetails={restaurant}/>
                 )}
-                {console.log("list after:: ", listOfRestaurants)}
         </div>
         </div>
     )
