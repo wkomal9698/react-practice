@@ -3,7 +3,7 @@ import { RESTAURANT_IMAGE_URL } from "../utils/constants"
 const RestaurantCard = (props) => {
     // console.log("rest deets:: ", props?.restaurantDetails?.info?.avgRating);
     // console.log("rating deets:: ", props?.restaurantDetails?.info?.avgRating >=4.5);
-    const {cloudinaryImageId, name, cuisines, avgRating, totalRatingsString, costForTwo} = props?.restaurantDetails?.info;
+    const {cloudinaryImageId, name, cuisines, avgRating, sla, costForTwo} = props?.restaurantDetails?.info;
     const offerDetails = props?.restaurantDetails?.info?.aggregatedDiscountInfoV3;
     const imgsrc = RESTAURANT_IMAGE_URL + cloudinaryImageId;
     return (
@@ -17,7 +17,7 @@ const RestaurantCard = (props) => {
             <div className="restaurant-misc-details">
                 <h4>{avgRating}</h4>
                 <h4>.</h4>
-                <h4>{totalRatingsString}</h4>
+                <h4>{sla.slaString}</h4>
                 <h4>.</h4>
                 <h4>{costForTwo}</h4>
             </div>
