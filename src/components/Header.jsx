@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { APP_LOGO_URL } from "../utils/constants"
+import { Link } from "react-router-dom";
 
 const Logo = () => {
     return (
@@ -9,12 +10,20 @@ const Logo = () => {
 
 export const NavItems = () => {
     const [isUserLoggedIn, setUserLoggedInState] = useState(false);
+
+     // If no dependency array => useEffect is called on every render
+     // If dependency array is empty = [] => useEffect is called on initial render
+     // If dependency array is [isUserLoggedIn] => useEffect is called everytime isUserLoggedIn is updated
+     useEffect(() => {
+        console.log("useEffect called");
+     }, [isUserLoggedIn]);
+
     return (
         <div className="nav-items">
             <ul className="ul-items">
-                <li>Home</li>
-                <li>About Us</li>
-                <li>Contact Us</li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About Us</Link></li>
+                <li><Link to="/contact">Contact Us</Link></li>
                 <li>Cart</li>
                 <button className="login" onClick={() => setUserLoggedInState(!isUserLoggedIn)}>{isUserLoggedIn ? "Logout" : "Login"}</button>
             </ul>

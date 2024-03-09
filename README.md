@@ -57,3 +57,7 @@ Food ordering app
 (Normal JS utility functions)
 - useState() - Super powerful state variables in react
 - useEffect()
+
+# 2 types of Routing in web apps
+- Client Side Routing
+- Server Side Routing

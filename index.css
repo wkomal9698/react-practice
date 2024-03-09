@@ -1,9 +1,8 @@
 .header {
-    background-color: lightcoral;
+    
     display: flex;
     justify-content: space-between;
     border: 1px solid black;
-    margin: 20px;
 }
 
 .logo {
@@ -80,9 +79,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer {
-    background-color: lightcoral;
+    border: 1px solid black;
     display: flex;
-    margin: 20px;
 }
 
 .filter-button {
