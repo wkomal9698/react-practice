@@ -5,7 +5,7 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Logo = () => {
     return (
-        <img className="logo" src={APP_LOGO_URL}></img>
+        <img className="w-28" src={APP_LOGO_URL}></img>
     )
 }
 
@@ -21,15 +21,15 @@ export const NavItems = () => {
      }, [isUserLoggedIn]);
 
     return (
-        <div className="nav-items">
-            <ul className="ul-items">
-                <li>Online Status: {onlineStatus?"✅":"🔴"}</li>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About Us</Link></li>
-                <li><Link to="/contact">Contact Us</Link></li>
-                <li><Link to="/grocery">Grocery</Link></li>
-                <li>Cart</li>
-                <button className="login" onClick={() => setUserLoggedInState(!isUserLoggedIn)}>{isUserLoggedIn ? "Logout" : "Login"}</button>
+        <div className="flex items-conter">
+            <ul className="flex p-4 m-4">
+                <li className="p-4">Online Status: {onlineStatus?"✅":"🔴"}</li>
+                <li className="p-4"><Link to="/">Home</Link></li>
+                <li className="p-4"><Link to="/about">About Us</Link></li>
+                <li className="p-4"><Link to="/contact">Contact Us</Link></li>
+                <li className="p-4"><Link to="/grocery">Grocery</Link></li>
+                <li className="p-4">Cart</li>
+                <button className="p-4" onClick={() => setUserLoggedInState(!isUserLoggedIn)}>{isUserLoggedIn ? "Logout" : "Login"}</button>
             </ul>
         </div>
     )
@@ -37,7 +37,7 @@ export const NavItems = () => {
 
 const Header = () => {
     return (
-        <div className="header">
+        <div className="flex justify-between bg-green-100 shadow-lg m-2 sm:bg-yellow-100 lg:bg-pink-100">
             <Logo></Logo>
             <NavItems></NavItems>
         </div>

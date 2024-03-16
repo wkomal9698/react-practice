@@ -50,22 +50,24 @@ const Body = () => {
     // Conditional Rendering via Ternary operator
     return listOfRestaurants.length === 0 ? <Shimmer/> : (
         <div className="body">
-           <div className="search">
-            <input type="text" value={searchText} onChange={(e)=> setSearchText(e.target.value)}></input>
-            <button onClick={() => {
+            <div className="filter flex m-4"> 
+           <div className="search p-4">
+            <input type="text" className="border border-solid border-black" value={searchText} onChange={(e)=> setSearchText(e.target.value)}></input>
+            <button className="px-4 py-2 bg-green-100 m-4 shadow-md rounded-xl" onClick={() => {
                 setFilteredListOfRestaurants(listOfRestaurants.filter((restaurant) => restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())))}}>Search</button>
         </div>
-            <div className="filter"> 
-            
-            <button className="filter-button" 
+        
+            <div className="search p-4 flex items-center">
+            <button className="mx-4 px-4 py-2 bg-blue-100 shadow-md" 
             onClick={(e)=>{
                 setFilteredListOfRestaurants(listOfRestaurants.filter((restaurant) => restaurant.info.avgRating >= 4.5));
             }}>Top rated Restaurants</button>
-            <button className="filter-button" 
+            <button className="mx-4 px-4 py-2 bg-blue-100 shadow-md" 
             onClick={(e)=>{setFilteredListOfRestaurants(listOfRestaurants); setSearchText("");
             }}>All Restaurants</button>
+            </div>
         </div> 
-            <div className="restaurant-container">
+            <div className="flex flex-wrap">
                 {filteredListOfRestaurants.map((restaurant) => <Link to={"/restaurants/"+restaurant.info.id} key={restaurant.info.id} ><RestaurantCard restaurantDetails={restaurant}/></Link>
                 )}
         </div>

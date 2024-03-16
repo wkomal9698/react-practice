@@ -9,7 +9,7 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
-import Grocery from "./components/Grocery";
+// import Grocery from "./components/Grocery";
 
 // Chunking
 // Code splitting
@@ -18,9 +18,14 @@ import Grocery from "./components/Grocery";
 // On demand loading
 // Dynamic import
 
-// const Grocery = lazy(() => {import("./components/Grocery")});
+const Grocery = lazy(() => import("./components/Grocery"));
+console.log("Grocery:: ", Grocery);
 
-// const About = lazy(() => {import("./components/About")});
+const About = lazy(() => import("./components/About"));
+console.log("About:: ", About);
+
+console.log("React lazy:: ", lazy);
+console.log("React lazy:: ", React.lazy);
 
 const AppLayout = () => {
     return (
