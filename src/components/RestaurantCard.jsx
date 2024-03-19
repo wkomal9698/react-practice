@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { RESTAURANT_IMAGE_URL } from "../utils/constants"
+import UserContext from "../utils/UserContext";
 
 const RestaurantCard = (props) => {
     // console.log("rest deets:: ", props?.restaurantDetails?.info?.avgRating);
-    // console.log("rating deets:: ", props?.restaurantDetails?.info?.avgRating >=4.5);
+    // console.log("rating deets:: ", props?.restaurantDetails?.info);
+    const userData = useContext(UserContext);
     const {cloudinaryImageId, name, cuisines, avgRating, sla, costForTwo} = props?.restaurantDetails?.info;
     const offerDetails = props?.restaurantDetails?.info?.aggregatedDiscountInfoV3;
     const imgsrc = RESTAURANT_IMAGE_URL + cloudinaryImageId;
@@ -16,7 +19,7 @@ const RestaurantCard = (props) => {
             </div>
             <div className="restaurant-misc-details">
                 <h4>{avgRating}</h4>
-                <h4>{sla.slaString}</h4>
+                <h4>{sla.slaString} for {userData.loggedInuser}</h4>
                 <h4>{costForTwo}</h4>
             </div>
             <div>
@@ -25,6 +28,20 @@ const RestaurantCard = (props) => {
             </div>
         </div>
     )
+}
+
+// Higher Order component
+// Input - RestaurantCard => Output - RestaurantCardPromoted
+
+export const withPromotedLabel = (RestaurantCard) => {
+    return (props) => {
+        return (
+            <div>
+                <label className="absolute bg-gray-700 text-white m-2 p-2 rounded-lg">Promoted</label>
+            <RestaurantCard {...props}/>
+            </div>
+        )
+    }
 }
 
 export default RestaurantCard;

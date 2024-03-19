@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -10,6 +10,7 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 // import Grocery from "./components/Grocery";
+import UserContext from "./utils/UserContext";
 
 // Chunking
 // Code splitting
@@ -19,18 +20,30 @@ import Shimmer from "./components/Shimmer";
 // Dynamic import
 
 const Grocery = lazy(() => import("./components/Grocery"));
-console.log("Grocery:: ", Grocery);
+// console.log("Grocery:: ", Grocery);
 
 const About = lazy(() => import("./components/About"));
-console.log("About:: ", About);
+// console.log("About:: ", About);
 
-console.log("React lazy:: ", lazy);
-console.log("React lazy:: ", React.lazy);
+// console.log("React lazy:: ", lazy);
+// console.log("React lazy:: ", React.lazy);
 
 const AppLayout = () => {
+
+    const [userName, setUserName] = useState(); 
+    useEffect(() => {
+        const data = {
+            name: "Komal"
+        }
+        setUserName(data.name);
+    },[]);
+    
     return (
+        <UserContext.Provider value={{loggedInuser: userName, setUserName: setUserName}}>
         <div className="app">
+        {/* <UserContext.Provider value={{loggedInuser: "Elon Musk"}}> */}
             <Header></Header>
+            {/* </UserContext.Provider> */}
             <Outlet/>
             {/* If path = / */}
             {/* <Body></Body> */}
@@ -42,6 +55,7 @@ const AppLayout = () => {
             {/* <Contact></Contact> */}
             <Footer></Footer>
         </div>
+        </UserContext.Provider>
     )
 }
 

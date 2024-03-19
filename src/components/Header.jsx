@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { APP_LOGO_URL } from "../utils/constants"
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Logo = () => {
     return (
@@ -12,6 +13,8 @@ const Logo = () => {
 export const NavItems = () => {
     const onlineStatus = useOnlineStatus();
     const [isUserLoggedIn, setUserLoggedInState] = useState(false);
+    const userData = useContext(UserContext);
+    console.log("User Data:: ", userData);
 
      // If no dependency array => useEffect is called on every render
      // If dependency array is empty = [] => useEffect is called on initial render
@@ -30,6 +33,7 @@ export const NavItems = () => {
                 <li className="p-4"><Link to="/grocery">Grocery</Link></li>
                 <li className="p-4">Cart</li>
                 <button className="p-4" onClick={() => setUserLoggedInState(!isUserLoggedIn)}>{isUserLoggedIn ? "Logout" : "Login"}</button>
+                <li className="p-4 font-bold">{userData.loggedInuser}</li>
             </ul>
         </div>
     )

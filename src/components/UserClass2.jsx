@@ -3,7 +3,7 @@ import React from "react";
 class UserClass2 extends React.Component {
 
     constructor(props) {
-        console.log(props.name , "CONSTRUCTOR")
+        // console.log(props.name , "CONSTRUCTOR")
         super(props);
         this.state = {
             count: 0
@@ -11,31 +11,31 @@ class UserClass2 extends React.Component {
     }
 
     componentWillMount () {
-        console.log(this.props.name , "WILL MOUNT")
+        // console.log(this.props.name , "WILL MOUNT")
     }
 
     componentDidMount () {
-        console.log(this.props.name , "DID MOUNT")
+        // console.log(this.props.name , "DID MOUNT")
     }
 
     componentDidUpdate() {
-        console.log(this.props.name , "DID UPDATE")
+        // console.log(this.props.name , "DID UPDATE")
     }
 
     componentWillUpdate() {
-        console.log(this.props.name , "WILL UPDATE")
+        // console.log(this.props.name , "WILL UPDATE")
     }
 
     componentWillUnmount() {
-        console.log(this.props.name , "WILL UNMOUNT")
+        // console.log(this.props.name , "WILL UNMOUNT")
     }
 
     componentDidCatch() {
-        console.log(this.props.name , "DID CATCH")
+        // console.log(this.props.name , "DID CATCH")
     }
 
     render() {
-        console.log(this.props.name , "RENDER")
+        // console.log(this.props.name , "RENDER")
 
         const {name, location, contact} = this.props;
         return (
