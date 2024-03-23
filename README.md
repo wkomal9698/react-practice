@@ -61,3 +61,12 @@ Food ordering app
 # 2 types of Routing in web apps
 - Client Side Routing
 - Server Side Routing
+
+# Redux
+
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+- Connect our store to our app
+- Create Slice - Cart slice
+- dispatch (action)
+- Subscribe via selector

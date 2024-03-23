@@ -3,6 +3,7 @@ import { APP_LOGO_URL } from "../utils/constants"
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Logo = () => {
     return (
@@ -14,7 +15,7 @@ export const NavItems = () => {
     const onlineStatus = useOnlineStatus();
     const [isUserLoggedIn, setUserLoggedInState] = useState(false);
     const userData = useContext(UserContext);
-    console.log("User Data:: ", userData);
+    // console.log("User Data:: ", userData);
 
      // If no dependency array => useEffect is called on every render
      // If dependency array is empty = [] => useEffect is called on initial render
@@ -22,6 +23,10 @@ export const NavItems = () => {
      useEffect(() => {
         console.log("useEffect called");
      }, [isUserLoggedIn]);
+
+     // Selector for reading redux store
+     // Subscribing to our store using selector
+     const cartItems = useSelector((store) => store.cart.items);
 
     return (
         <div className="flex items-conter">
@@ -31,7 +36,7 @@ export const NavItems = () => {
                 <li className="p-4"><Link to="/about">About Us</Link></li>
                 <li className="p-4"><Link to="/contact">Contact Us</Link></li>
                 <li className="p-4"><Link to="/grocery">Grocery</Link></li>
-                <li className="p-4">Cart</li>
+                <li className="p-4 font-bold text-lg"><Link to="/cart">Cart ({cartItems.length} items)</Link></li>
                 <button className="p-4" onClick={() => setUserLoggedInState(!isUserLoggedIn)}>{isUserLoggedIn ? "Logout" : "Login"}</button>
                 <li className="p-4 font-bold">{userData.loggedInuser}</li>
             </ul>
