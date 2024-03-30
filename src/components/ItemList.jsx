@@ -18,7 +18,7 @@ const ItemList = ({items, fromCart=false}) => {
 
     return (
         <div>
-            {items.map(item => <div key={item.card.info.id}>
+            {items.map(item => <div data-testid="foodItems" key={item.card.info.id}>
                 <div className="text-lg font-semibold flex justify-between mt-4 ml-4">
                     <span>{item.card.info.name}</span>
                     <span>₹ {item.card.info.price ? item.card.info.price/100 : item.card.info.defaultPrice ? item.card.info.defaultPrice/100 : 0}</span>

@@ -70,3 +70,22 @@ Food ordering app
 - Create Slice - Cart slice
 - dispatch (action)
 - Subscribe via selector
+
+# Types of testing (developer)
+
+- Unit Testing -> You test your React components in isolation
+- Integration Testing -> Testing the integration of your component with other components (the components that your component interacts with)
+- End to End Testing - e2e testing -> Testing the whole React application, starts from user landing to your page and ends to when user leaves your application, all the flows are covered here. Requires different types of tools, like selenium, papyrus, etc. Mostly not a developer job.
+
+# Setting up Testing in our App:
+
+- Install React Testing Library
+- Install Jest
+- Install Babel dependencies
+- Configure Babel (babel.config.js)
+- Configure Parcel config file to disable default babel transpilation
+- Jest configuration (npx jest --init)
+- Install jsdom library
+- Install @babel/preset-react (to make JSX work in test cases)
+- Include @babel/preset-react inside my babel config preset
+- Install @testing-library/jest-dom

@@ -10,7 +10,7 @@ const RestaurantCard = (props) => {
     const offerDetails = props?.restaurantDetails?.info?.aggregatedDiscountInfoV3;
     const imgsrc = RESTAURANT_IMAGE_URL + cloudinaryImageId;
     return (
-        <div className="m-4 p-4 w-[250px] rounded-lg bg-slate-100 hover:bg-slate-300 hover:w-[260px]">
+        <div data-testid="resCard" className="m-4 p-4 w-[250px] rounded-lg bg-slate-100 hover:bg-slate-300 hover:w-[260px]">
             <img className="rounded-md" src={imgsrc}></img>
             <div className="restaurant-details">
                 <div>

@@ -56,7 +56,7 @@ const Body = () => {
         <div className="body">
             <div className="filter flex m-4"> 
            <div className="search p-4">
-            <input type="text" className="border border-solid border-black" value={searchText} onChange={(e)=> setSearchText(e.target.value)}></input>
+            <input data-testid="searchInput" type="text" className="border border-solid border-black" value={searchText} onChange={(e)=> setSearchText(e.target.value)}></input>
             <button className="px-4 py-2 bg-green-100 m-4 shadow-md rounded-xl" onClick={() => {
                 setFilteredListOfRestaurants(listOfRestaurants.filter((restaurant) => restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())))}}>Search</button>
         </div>
